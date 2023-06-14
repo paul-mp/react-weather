@@ -4,13 +4,11 @@ import Grid from "@mui/material/Grid";
 import Card from "./Card";
 import SearchBox from "./SearchBox";
 
-const apikey = process.env.REACT_APP_API_KEY;
-
 const WeatherApp = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [cityName, setCityName] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
-  const API_KEY = apikey;
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   const fetchWeatherData = async () => {
     try {
