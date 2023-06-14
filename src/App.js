@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from "react";
-//import './App.css';
+import React, { useState } from "react";
 import axios from "axios";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
+import Card from "./Card";
+import SearchBox from "./SearchBox";
 
 const apikey = process.env.REACT_APP_API_KEY;
 
 const WeatherApp = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [cityName, setCityName] = useState("");
+  const [hasSearched, setHasSearched] = useState(false);
   const API_KEY = apikey;
 
   const fetchWeatherData = async () => {
     try {
+      setHasSearched(true);
       const response = await axios.get(
         `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`
       );
@@ -32,18 +33,6 @@ const WeatherApp = () => {
     setCityName(event.target.value);
   };
 
-  useEffect(() => {
-    if (weatherData && weatherData.weather[0].main === "Clouds") {
-      document.body.style.backgroundColor = "rgb(87, 102, 128)";
-    } else if (weatherData && weatherData.weather[0].main === "Haze") {
-      document.body.style.backgroundColor = "rgb(93, 143, 120)";
-    } else if (weatherData && weatherData.weather[0].main === "Clear") {
-      document.body.style.backgroundColor = "rgb(150, 150, 150)";
-    } else {
-      document.body.style.backgroundColor = "";
-    }
-  }, [weatherData]);
-
   return (
     <div className="body">
       <h1
@@ -53,7 +42,7 @@ const WeatherApp = () => {
           alignItems: "center",
         }}
       >
-        App
+        Weather App
       </h1>
       <div style={{ maxWidth: "100%", paddingTop: "12px" }}>
         <div>
@@ -69,42 +58,16 @@ const WeatherApp = () => {
                   alignItems: "center",
                 }}
               >
-                <form id="form" onSubmit={handleSearch}>
-                  <TextField
-                    type="search"
-                    label="Enter city name"
-                    variant="standard"
-                    id="query"
-                    name="q"
-                    placeholder="Search..."
-                    onChange={handleInputChange}
-                    value={cityName}
-                  />
-
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    style={{ marginTop: "4%" }}
-                  >
-                    Submit
-                  </Button>
-                </form>
+                <SearchBox
+                  handleInputChange={handleInputChange}
+                  handleSearch={handleSearch}
+                  cityName={cityName}
+                />
               </Grid>
+              <Card weatherData={weatherData} hasSearched={hasSearched} />
             </Grid>
           </Grid>
         </div>
-      </div>
-
-      <div id="data">
-        {weatherData ? (
-          <div>
-            <h1>{weatherData.name}</h1>
-            <h2>{weatherData.weather[0].main}</h2>
-            <p>{Math.floor(weatherData.main.temp - 273.15)}°C</p>
-          </div>
-        ) : (
-          <p>Enter a city to search</p>
-        )}
       </div>
     </div>
   );
