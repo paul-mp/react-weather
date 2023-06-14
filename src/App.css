@@ -1,0 +1,17 @@
+#form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form input {
+
+}
+
+#data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(235, 235, 235);
+}

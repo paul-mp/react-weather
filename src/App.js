@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 
@@ -27,8 +27,28 @@ const WeatherApp = () => {
         setCityName(event.target.value);
     };
 
+    const backgroundChange = () => {
+        if (weatherData && weatherData.weather[0].main === "Clouds") {
+            return {backgroundColor: "red"};
+        } else {
+            return {};  // Default case, if not "Clouds"
+        }
+    }
+
+    useEffect(() => {
+        if (weatherData && weatherData.weather[0].main === "Clouds") {
+            document.body.style.backgroundColor = "rgb(87, 102, 128)";
+        } 
+        else if (weatherData && weatherData.weather[0].main === "Haze" ){
+            document.body.style.backgroundColor = "rgb(93, 143, 120)";
+        } else {
+            document.body.style.backgroundColor = ""; 
+        }
+    }, [weatherData]);
+
+
     return (
-        <div>
+        <div className="body">
             <form id="form" onSubmit={handleSearch}>
                 <input 
                     type="search" 
@@ -40,7 +60,7 @@ const WeatherApp = () => {
                 />
                 <button type="submit">Search</button>
             </form>
-            <div>
+            <div id="data">
                 {weatherData ? (
                     <div>
                         <h1>{weatherData.name}</h1>
