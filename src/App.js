@@ -36,11 +36,13 @@ const WeatherApp = () => {
     }
 
     useEffect(() => {
-        if (weatherData && weatherData.weather[0].main === "Clouds") {
+        if (weatherData.weather[0].main === "Clouds") {
             document.body.style.backgroundColor = "rgb(87, 102, 128)";
         } 
-        else if (weatherData && weatherData.weather[0].main === "Haze" ){
+        else if (weatherData.weather[0].main === "Haze" ){
             document.body.style.backgroundColor = "rgb(93, 143, 120)";
+        } else if (weatherData.weather[0].main === "Clear" ){
+            document.body.style.backgroundColor = "rgb(150, 150, 150)";
         } else {
             document.body.style.backgroundColor = ""; 
         }
