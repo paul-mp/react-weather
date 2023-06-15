@@ -14,6 +14,10 @@ const bull = (
 );
 
 export default function BasicCard({ weatherData, hasSearched }) {
+  const iconUrl = `http://openweathermap.org/img/wn/${
+    weatherData && weatherData.weather[0].icon
+  }.png`;
+
   return (
     <>
       {hasSearched ? (
@@ -35,6 +39,13 @@ export default function BasicCard({ weatherData, hasSearched }) {
             <CardContent>
               <Typography sx={{ mb: 1.5 }} variant="h5">
                 <b>{weatherData && weatherData.name}</b>
+                <br />
+                <br />
+                <img
+                  src={iconUrl}
+                  alt={weatherData && weatherData.weather[0].description}
+                  style={{ width: "70px" }}
+                />
               </Typography>
               <Typography variant="h6">
                 {hasSearched ? "Condition: " : ""}
