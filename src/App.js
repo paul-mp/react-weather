@@ -45,10 +45,9 @@ const WeatherApp = () => {
       <div style={{ maxWidth: "100%", paddingTop: "12px" }}>
         <div>
           <Grid container>
-            <Grid container direction="column" item xs={12}>
+            <Grid item xs={12}>
               <Grid
-                item
-                xs
+                container
                 direction="column"
                 style={{
                   display: "flex",
@@ -62,6 +61,8 @@ const WeatherApp = () => {
                   cityName={cityName}
                 />
               </Grid>
+            </Grid>
+            <Grid item xs={12}>
               <Card weatherData={weatherData} hasSearched={hasSearched} />
             </Grid>
           </Grid>
