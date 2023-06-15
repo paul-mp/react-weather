@@ -3,6 +3,7 @@ import axios from "axios";
 import Grid from "@mui/material/Grid";
 import Card from "./Card";
 import SearchBox from "./SearchBox";
+import Bar from "./Bar";
 
 const WeatherApp = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -33,15 +34,7 @@ const WeatherApp = () => {
 
   return (
     <div className="body">
-      <h1
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        Weather App
-      </h1>
+      <Bar />
       <div style={{ maxWidth: "100%", paddingTop: "12px" }}>
         <div>
           <Grid container>
