@@ -2,9 +2,13 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 export default function BasicCard({ weatherData, hasSearched }) {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   const iconUrl = `http://openweathermap.org/img/wn/${
     weatherData && weatherData.weather[0].icon
   }.png`;
@@ -20,7 +24,11 @@ export default function BasicCard({ weatherData, hasSearched }) {
           }}
         >
           <Card
-            sx={{ maxWidth: 300, minWidth: 300, minHeight: 300 }}
+            sx={{
+              maxWidth: 300,
+              minWidth: isSmallScreen ? 200 : 300,
+              minHeight: 300,
+            }}
             style={{
               display: "flex",
               justifyContent: "center",

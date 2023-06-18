@@ -4,6 +4,8 @@ import Grid from "@mui/material/Grid";
 import Card from "./Card";
 import SearchBox from "./SearchBox";
 import Bar from "./Bar";
+import Box from "@mui/material/Box";
+
 
 const WeatherApp = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -33,34 +35,52 @@ const WeatherApp = () => {
   };
 
   return (
-    <div className="body">
+    <div>
       <Bar />
-      <div style={{ maxWidth: "100%", paddingTop: "12px" }}>
-        <div>
-          <Grid container>
-            <Grid item xs={12}>
-              <Grid
-                container
-                direction="column"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <SearchBox
-                  handleInputChange={handleInputChange}
-                  handleSearch={handleSearch}
-                  cityName={cityName}
-                />
-              </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <Card weatherData={weatherData} hasSearched={hasSearched} />
-            </Grid>
-          </Grid>
-        </div>
-      </div>
+      <br />
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        marginBottom="20px"
+      >
+        <SearchBox
+          handleInputChange={handleInputChange}
+          handleSearch={handleSearch}
+          cityName={cityName}
+        />
+      </Box>
+
+      <Grid
+        container
+        spacing={8}
+        style={{
+          justifyContent: "center",
+          alignContent: "center"
+        }}
+      >
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
+        </Grid>
+      </Grid>
     </div>
   );
 };
