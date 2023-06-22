@@ -1,33 +1,19 @@
 import React, { useState } from "react";
-import axios from "axios";
-import Grid from "@mui/material/Grid";
-import Card from "./Card";
-import SearchBox from "./SearchBox";
 import Bar from "./Bar";
 import Box from "@mui/material/Box";
-
+import SearchBox from "./SearchBox";
+import FetchData from "./FetchData";
+import GridCards from "./GridCards";
 
 const WeatherApp = () => {
-  const [weatherData, setWeatherData] = useState(null);
   const [cityName, setCityName] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
-  const API_KEY = process.env.REACT_APP_API_KEY;
-
-  const fetchWeatherData = async () => {
-    try {
-      setHasSearched(true);
-      const response = await axios.get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`
-      );
-      setWeatherData(response.data);
-    } catch (error) {
-      console.error("Error fetching data from OpenWeatherAPI:", error);
-    }
-  };
+  const [weatherData, fetchWeatherData] = FetchData(cityName);
 
   const handleSearch = (event) => {
     event.preventDefault(); // prevent the page from refreshing
     fetchWeatherData();
+    setHasSearched(true);
   };
 
   const handleInputChange = (event) => {
@@ -50,37 +36,7 @@ const WeatherApp = () => {
           cityName={cityName}
         />
       </Box>
-
-      <Grid
-        container
-        spacing={8}
-        style={{
-          justifyContent: "center",
-          alignContent: "center"
-        }}
-      >
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Card weatherData={weatherData} hasSearched={hasSearched}></Card>
-        </Grid>
-      </Grid>
+      <GridCards weatherData={weatherData} hasSearched={hasSearched} />
     </div>
   );
 };
