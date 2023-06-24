@@ -7,10 +7,22 @@ const FetchData = (cityName) => {
 
   const fetchWeatherData = async () => {
     try {
-      const response = await axios.get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`
+      // Fetch latitude and longitude for given city name
+      const geoResponse = await axios.get(
+        `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`
       );
-      setWeatherData(response.data);
+
+      if (!geoResponse.data || geoResponse.data.length === 0) {
+        throw new Error(`Cannot find the city: ${cityName}`);
+      }
+
+      const { lat, lon } = geoResponse.data[0];
+
+      // Fetch weather data for the given latitude and longitude
+      const weatherResponse = await axios.get(
+        `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude={part}&appid=${API_KEY}`
+      );
+      setWeatherData(weatherResponse.data);
     } catch (error) {
       console.error("Error fetching data from OpenWeatherAPI:", error);
     }
