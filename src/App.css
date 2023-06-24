@@ -1,3 +1,9 @@
-* {
-    background-color: rgb(170, 133, 222);
+body {
+    margin: 0;
+    padding: 0;
+    background: url(https://c4.wallpaperflare.com/wallpaper/118/662/425/stars-calm-night-blue-wallpaper-preview.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }

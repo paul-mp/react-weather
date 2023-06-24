@@ -4,14 +4,46 @@ import Box from "@mui/material/Box";
 import SearchBox from "./SearchBox";
 import FetchData from "./FetchData";
 import GridCards from "./GridCards";
+import WeatherInfo from "./WeatherInfo";
+import "./App.css";
 
 const WeatherApp = () => {
   const [cityName, setCityName] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
   const [weatherData, fetchWeatherData] = FetchData(cityName);
 
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  let today = new Date();
+  let dayName = days[today.getDay()];
+  let monthName = months[today.getMonth()];
+  let date = dayName + " " + today.getDate() + " " + monthName;
+
   const handleSearch = (event) => {
-    event.preventDefault(); // prevent the page from refreshing
+    event.preventDefault();
     fetchWeatherData();
     setHasSearched(true);
   };
@@ -28,7 +60,7 @@ const WeatherApp = () => {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        marginBottom="20px"
+        marginBottom="-80px"
       >
         <SearchBox
           handleInputChange={handleInputChange}
@@ -36,6 +68,13 @@ const WeatherApp = () => {
           cityName={cityName}
         />
       </Box>
+      <WeatherInfo
+        hasSearched={hasSearched}
+        weatherData={weatherData}
+        cityName={cityName}
+        date={date}
+      />
+      <br />
       <GridCards weatherData={weatherData} hasSearched={hasSearched} />
     </div>
   );

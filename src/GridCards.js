@@ -2,17 +2,20 @@ import Grid from "@mui/material/Grid";
 import Card from "./Card";
 
 const GridCards = ({ weatherData, hasSearched }) => {
-  const dailyData = weatherData && Array.isArray(weatherData.daily) 
-      ? weatherData.daily.slice(0, 7) 
+  const dailyData =
+    weatherData && Array.isArray(weatherData.daily)
+      ? weatherData.daily.slice(0, 7)
       : [];
 
   return (
     <Grid
       container
-      spacing={8}
+      spacing={2}
+      justify="center"
       style={{
+        display: "flex",
         justifyContent: "center",
-        alignContent: "center"
+        alignContent: "center",
       }}
     >
       {dailyData.map((day, index) => (

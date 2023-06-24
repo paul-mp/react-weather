@@ -2,8 +2,25 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
 export default function Search({ handleInputChange, handleSearch, cityName }) {
+  const styles = {
+    color: "white",
+    borderBottomColor: "white",
+  };
+
+  const labelStyles = {
+    color: "white",
+  };
+
   return (
-    <form id="form" onSubmit={handleSearch} style={{ marginBottom: "100px" }}>
+    <form
+      id="form"
+      onSubmit={handleSearch}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        marginBottom: "100px",
+      }}
+    >
       <TextField
         type="search"
         label="Enter city name"
@@ -13,13 +30,20 @@ export default function Search({ handleInputChange, handleSearch, cityName }) {
         placeholder="Search..."
         onChange={handleInputChange}
         value={cityName}
+        InputProps={{
+          // add this line
+          style: styles, // use the styles defined above
+        }}
+        InputLabelProps={{
+          // add this line
+          style: labelStyles, // use the label styles defined above
+        }}
       />
-      <br />
       <Button
         variant="contained"
         type="submit"
         style={{
-          marginTop: "8%",
+          marginLeft: "10px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

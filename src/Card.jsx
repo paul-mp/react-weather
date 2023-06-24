@@ -11,7 +11,15 @@ export default function BasicCard({ dayData, hasSearched }) {
 
   // Function to get day of the week from timestamp
   const getDayOfWeek = (timestamp) => {
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
     const date = new Date(timestamp * 1000); // Convert timestamp to milliseconds
     return days[date.getDay()];
   };
@@ -30,9 +38,10 @@ export default function BasicCard({ dayData, hasSearched }) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
           }}
         >
-          <CardContent>
+          <CardContent style={{ color: "white" }}>
             <Typography sx={{ mb: 1.5 }} variant="h5">
               <b>{getDayOfWeek(dayData.dt)}</b>
               <br />
