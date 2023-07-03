@@ -9,7 +9,12 @@ const GridCards = ({ weatherData, hasSearched }) => {
       : [];
 
   return (
-    <Grid container spacing={2} justifyContent="center">
+    <Grid
+      container
+      spacing={
+        2
+      } /* As per sahils request to make them on top of each other -> justifyContent=""*/
+    >
       {dailyData.map((day, index) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
           <Box display="flex" justifyContent="center">

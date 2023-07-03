@@ -38,7 +38,7 @@ export default function BasicCard({ dayData, hasSearched }) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundColor: "rgba(0, 0, 0, 0.3)",
           }}
         >
           <CardContent style={{ color: "white" }}>

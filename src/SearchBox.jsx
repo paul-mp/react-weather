@@ -3,12 +3,12 @@ import TextField from "@mui/material/TextField";
 
 export default function Search({ handleInputChange, handleSearch, cityName }) {
   const styles = {
-    color: "white",
+    color: "black",
     borderBottomColor: "white",
   };
 
   const labelStyles = {
-    color: "white",
+    color: "black",
   };
 
   return (
