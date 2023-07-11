@@ -10,8 +10,9 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { Link } from "react-router-dom";
 
-const pages = ["About", "GitHub", "Blog"];
+const pages = ["About"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -105,6 +106,8 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 sx={{ my: 2, color: "white", display: "block" }}
+                component={Link}
+                to={`/${page}`}
               >
                 {page}
               </Button>
