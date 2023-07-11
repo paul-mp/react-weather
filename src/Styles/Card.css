@@ -1,0 +1,14 @@
+.hasSearched {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.cardContent {
+    color: white;
+}
+
+.imgStyle {
+    width: 70px;
+}

@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import Bar from "../Bar";
+import Bar from "../Components/Bar";
 import Box from "@mui/material/Box";
-import SearchBox from "../SearchBox";
-import FetchData from "../FetchData";
-import GridCards from "../GridCards";
-import "../App.css";
-import HourlyWeatherChart from "../WeatherChart";
-
-
-
+import SearchBox from "../Components/SearchBox";
+import FetchData from "../Components/FetchData";
+import GridCards from "../Components/GridCards";
+import "../Styles/App.css";
+//import HourlyWeatherChart from "../Components/WeatherChart";
 
 const WeatherApp = () => {
   const [cityName, setCityName] = useState("");
@@ -41,13 +38,12 @@ const WeatherApp = () => {
           cityName={cityName}
         />
       </Box>
-      // ...
-<GridCards weatherData={weatherData} hasSearched={hasSearched} />
-{hasSearched && weatherData && <HourlyWeatherChart weatherData={weatherData.hourly} />}
-
-
+      <GridCards weatherData={weatherData} hasSearched={hasSearched} />
+      {/* Weather chart doesn't entirely work. Fix later */}
+      {/*hasSearched && weatherData && (
+        <HourlyWeatherChart weatherData={weatherData.hourly} />
+      )*/}
     </div>
-    
   );
 };
 
